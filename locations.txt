@@ -1,0 +1,29 @@
+This PC
+    C                                                       C:\
+        Program Data                                        C:\ProgramData
+        Program Files                                       C:\Program Files
+            Common Files
+        Program Files (x86)                                 C:\Program Files (x86)
+            Common Files
+        Users                                               C:\Users
+            User
+                AppData
+                    Local
+                        Temp
+                    LocalLow
+                    Roaming
+                        Microsoft
+                            Windows
+                                Recent
+                                Themes
+                                Start Menu
+                                SentTo
+                        Internet Explorer\Quick Launch
+                Desktop
+                Downloads
+                Documents
+        Windows                                            C:\Users
+            Fonts
+            System32\drivers\etc
+
+
