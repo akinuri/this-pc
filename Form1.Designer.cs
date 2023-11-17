@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(245, 525);
+            this.ClientSize = new System.Drawing.Size(240, 521);
             this.Controls.Add(this.treeView1);
             this.Name = "Form1";
             this.Text = "This PC";
@@ -53,6 +53,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
             this.ResumeLayout(false);
+
         }
 
         #endregion

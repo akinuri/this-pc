@@ -5,20 +5,19 @@ using TreeNode = System.Windows.Forms.TreeNode;
 
 namespace this_pc
 {
-    class LocationNodeRecord
-    {
-        public string Text { get; set; }
-        public string Tag { get; set; }
-        public List<LocationNodeRecord> Children = new List<LocationNodeRecord>();
-        public int Level = 0;
-    }
-
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
             PopulateTreeView(treeView1);
+        }
+        class LocationNodeRecord
+        {
+            public string Text { get; set; }
+            public string Tag { get; set; }
+            public List<LocationNodeRecord> Children = new List<LocationNodeRecord>();
+            public int Level = 0;
         }
 
         private void PopulateTreeView(TreeView treeView)
