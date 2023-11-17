@@ -1,0 +1,32 @@
+control panel
+programs
+network locations
+
+command prompt
+registry editor
+explorer
+device manager
+task manager
+
+defender/security
+
+calculator
+calendar
+camera
+clock
+voice recorder
+weather
+
+notepad
+paint
+
+remote desktop
+snipping tool
+
+computer management
+    task scheduler
+    event viewer
+    device manager
+    disk management
+
+
