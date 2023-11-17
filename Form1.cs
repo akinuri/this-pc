@@ -27,12 +27,18 @@ namespace this_pc
             This PC, ::{20D04FE0-3AEA-1069-A2D8-08002B30309D}
                 Local Disk (C:), C:\
                     Program Data, C:\ProgramData
-                    Program Files, C:\Program Files,
+                    Program Files, C:\Program Files
+                        Common Files,  C:\Program Files\Common Files
                     Program Files (x86), C:\Program Files (x86)
+                        Common Files,  C:\Program Files (x86)\Common Files
                     Users, C:\Users
+                        %user%,  C:\Users\%user%
                     Windows, C:\Windows
+                        Fonts,  C:\Windows\Fonts
+                        etc,  C:\Windows\System32\drivers\etc
             ";
             locationsText = RemoveUnnecessaryIndentation(locationsText);
+            locationsText = locationsText.Replace("%user%", Environment.UserName);
 
             string[] lines = Regex.Split(locationsText, @"\r?\n");
 
