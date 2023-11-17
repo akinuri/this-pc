@@ -1,50 +1,96 @@
 using System.Diagnostics;
 using Timer = System.Windows.Forms.Timer;
+using TreeNode = System.Windows.Forms.TreeNode;
 
 namespace this_pc
 {
+    class LocationNodeRecord
+    {
+        public string Text { get; set; }
+        public string Tag { get; set; }
+        public List<LocationNodeRecord>? Children { get; set; }
+    }
+
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
-            PopulateTreeView(this.treeView1);
+            PopulateTreeView(treeView1);
         }
 
         private void PopulateTreeView(TreeView treeView)
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("This PC");
-            treeNode1.Tag = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}";
+            List<LocationNodeRecord> locations = new List<LocationNodeRecord>
+            {
+                new LocationNodeRecord
+                {
+                    Text = "This PC",
+                    Tag = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}",
+                    Children = new List<LocationNodeRecord>
+                    {
+                        new LocationNodeRecord
+                        {
+                            Text = "Local Disk (C:)",
+                            Tag = "C:\\",
+                            Children = new List<LocationNodeRecord> {
+                                new LocationNodeRecord
+                                {
+                                    Text = "Program Data",
+                                    Tag = "C:\\ProgramData",
+                                },
+                                new LocationNodeRecord
+                                {
+                                    Text = "Program Files",
+                                    Tag = "C:\\Program Files",
+                                },
+                                new LocationNodeRecord
+                                {
+                                    Text = "Program Files (x86)",
+                                    Tag = "C:\\Program Files (x86)",
+                                },
+                                new LocationNodeRecord
+                                {
+                                    Text = "Users",
+                                    Tag = "C:\\Users",
+                                },
+                                new LocationNodeRecord
+                                {
+                                    Text = "Windows",
+                                    Tag = "C:\\Windows",
+                                },
+                            },
+                        },
+                    },
+                },
+            };
 
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Local Disk (C:)");
-            treeNode2.Tag = "C:\\";
+            foreach (LocationNodeRecord location in locations)
+            {
+                TreeNode treenode = new TreeNode(location.Text) { Tag = location.Tag };
+                treeView.Nodes.Add(treenode);
+                if (location.Children != null)
+                {
+                    foreach (LocationNodeRecord child in location.Children)
+                    {
+                        ProcessChildLocations(child, treenode);
+                    }
+                }
+            }
 
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Program Data");
-            treeNode3.Tag = "C:\\ProgramData";
+        }
 
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Program Files");
-            treeNode4.Tag = "C:\\Program Files";
-
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Program Files (x86)");
-            treeNode5.Tag = "C:\\Program Files (x86)";
-
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Users");
-            treeNode6.Tag = "C:\\Users";
-
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Windows");
-            treeNode7.Tag = "C:\\Windows";
-
-            treeNode1.Nodes.Add(treeNode2);
-
-            treeNode2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-                treeNode3,
-                treeNode4,
-                treeNode5,
-                treeNode6,
-                treeNode7,
-            });
-
-            treeView.Nodes.Add(treeNode1);
+        private void ProcessChildLocations(LocationNodeRecord location, TreeNode parentNode)
+        {
+            TreeNode treenode = new TreeNode(location.Text) { Tag = location.Tag };
+            parentNode.Nodes.Add(treenode);
+            if (location.Children != null)
+            {
+                foreach (LocationNodeRecord child in location.Children)
+                {
+                    ProcessChildLocations(child, treenode);
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -88,5 +134,6 @@ namespace this_pc
         {
             treeView1.SelectedNode = null;
         }
+
     }
 }
