@@ -17,8 +17,8 @@ This PC
                                 Recent
                                 Themes
                                 Start Menu
-                                SentTo
-                        Internet Explorer\Quick Launch
+                                SendTo
+                            Internet Explorer\Quick Launch
                 Desktop
                 Downloads
                 Documents

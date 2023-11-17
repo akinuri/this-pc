@@ -33,6 +33,19 @@ namespace this_pc
                         Common Files,  C:\Program Files (x86)\Common Files
                     Users, C:\Users
                         %user%,  C:\Users\%user%
+                        AppData,  C:\Users\%user%\AppData
+                            Local,  C:\Users\%user%\AppData\Local
+                                Temp,  C:\Users\%user%\AppData\Local\Temp
+                            LocalLow,  C:\Users\%user%\AppData\LocalLow
+                            Roaming,  C:\Users\%user%\AppData\Roaming
+                                Recent,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Recent
+                                Themes,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Themes
+                                Start Menu,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Start Menu
+                                SendTo,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\SendTo
+                                Quick Launch,  C:\Users\%user%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
+                        Desktop,  C:\Users\%user%\Desktop
+                        Downloads,  C:\Users\%user%\Downloads
+                        Documents,  C:\Users\%user%\Documents
                     Windows, C:\Windows
                         Fonts,  C:\Windows\Fonts
                         etc,  C:\Windows\System32\drivers\etc

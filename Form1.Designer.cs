@@ -33,10 +33,10 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(9, 9);
+            this.treeView1.Location = new System.Drawing.Point(10, 10);
             this.treeView1.Margin = new System.Windows.Forms.Padding(0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(200, 250);
+            this.treeView1.Size = new System.Drawing.Size(220, 500);
             this.treeView1.TabIndex = 10;
             this.treeView1.TabStop = false;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(219, 271);
+            this.ClientSize = new System.Drawing.Size(245, 525);
             this.Controls.Add(this.treeView1);
             this.Name = "Form1";
             this.Text = "This PC";
