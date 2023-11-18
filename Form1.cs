@@ -22,34 +22,14 @@ namespace this_pc
 
         private void PopulateTreeView(TreeView treeView)
         {
-            string locationsText = @"
-            This PC, ::{20D04FE0-3AEA-1069-A2D8-08002B30309D}
-                Local Disk (C:), C:\
-                    Program Data, C:\ProgramData
-                    Program Files, C:\Program Files
-                        Common Files,  C:\Program Files\Common Files
-                    Program Files (x86), C:\Program Files (x86)
-                        Common Files,  C:\Program Files (x86)\Common Files
-                    Users, C:\Users
-                        %user%,  C:\Users\%user%
-                        AppData,  C:\Users\%user%\AppData
-                            Local,  C:\Users\%user%\AppData\Local
-                                Temp,  C:\Users\%user%\AppData\Local\Temp
-                            LocalLow,  C:\Users\%user%\AppData\LocalLow
-                            Roaming,  C:\Users\%user%\AppData\Roaming
-                                Recent,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Recent
-                                Themes,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Themes
-                                Start Menu,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Start Menu
-                                SendTo,  C:\Users\%user%\AppData\Roaming\Microsoft\Windows\SendTo
-                                Quick Launch,  C:\Users\%user%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
-                        Desktop,  C:\Users\%user%\Desktop
-                        Downloads,  C:\Users\%user%\Downloads
-                        Documents,  C:\Users\%user%\Documents
-                    Windows, C:\Windows
-                        Fonts,  C:\Windows\Fonts
-                        etc,  C:\Windows\System32\drivers\etc
-            ";
-            locationsText = RemoveUnnecessaryIndentation(locationsText);
+            string locationsFilePath = "locations.txt";
+            if (!File.Exists(locationsFilePath))
+            {
+                return;
+            }
+            StreamReader sr = new StreamReader("locations.txt");
+            string locationsText = sr.ReadToEnd();
+            //locationsText = RemoveUnnecessaryIndentation(locationsText);
             locationsText = locationsText.Replace("%user%", Environment.UserName);
 
             string[] lines = Regex.Split(locationsText, @"\r?\n");
