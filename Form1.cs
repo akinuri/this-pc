@@ -30,7 +30,8 @@ namespace this_pc
             StreamReader sr = new StreamReader("locations.txt");
             string locationsText = sr.ReadToEnd();
             //locationsText = RemoveUnnecessaryIndentation(locationsText);
-            locationsText = locationsText.Replace("%user%", Environment.UserName);
+
+            locationsText = ReplaceEnvVarPlaceHolders(locationsText);
 
             string[] lines = Regex.Split(locationsText, @"\r?\n");
 
@@ -89,6 +90,19 @@ namespace this_pc
                     }
                 }
             }
+        }
+
+        private string ReplaceEnvVarPlaceHolders(string text)
+        {
+            IDictionary<string, string> handledVars = new Dictionary<string, string>
+            {
+                {"%UserName%", Environment.UserName},
+            };
+            foreach (KeyValuePair<string, string> pair in handledVars)
+            {
+                text = text.Replace(pair.Key, pair.Value);
+            }
+            return text;
         }
 
         static string RemoveUnnecessaryIndentation(string indentedString)
