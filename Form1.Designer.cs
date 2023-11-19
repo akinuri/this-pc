@@ -33,10 +33,11 @@
             // 
             // treeView1
             // 
+            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.treeView1.Location = new System.Drawing.Point(10, 10);
             this.treeView1.Margin = new System.Windows.Forms.Padding(0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(220, 500);
+            this.treeView1.Size = new System.Drawing.Size(240, 570);
             this.treeView1.TabIndex = 10;
             this.treeView1.TabStop = false;
             this.treeView1.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeCollapse);
@@ -46,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 531);
+            this.ClientSize = new System.Drawing.Size(274, 601);
             this.Controls.Add(this.treeView1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
