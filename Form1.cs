@@ -94,9 +94,22 @@ namespace this_pc
 
         private string ReplaceEnvVarPlaceHolders(string text)
         {
-            IDictionary<string, string> handledVars = new Dictionary<string, string>
+            IDictionary<string, string?> handledVars = new Dictionary<string, string?>
             {
-                {"%UserName%", Environment.UserName},
+                {"%ThisPC%",                    "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"},
+                {"%SystemDrive%",               Environment.GetEnvironmentVariable("SystemDrive")},
+                {"%ProgramData%",               Environment.GetEnvironmentVariable("ProgramData")},
+                {"%ProgramFiles%",              Environment.GetEnvironmentVariable("ProgramFiles")},
+                {"%ProgramFiles(x86)%",         Environment.GetEnvironmentVariable("ProgramFiles(x86)")},
+                {"%CommonProgramFiles%",        Environment.GetEnvironmentVariable("CommonProgramFiles")},
+                {"%CommonProgramFiles(x86)%",   Environment.GetEnvironmentVariable("CommonProgramFiles(x86)")},
+                {"%USERNAME%",                  Environment.GetEnvironmentVariable("USERNAME")},
+                {"%USERPROFILE%",               Environment.GetEnvironmentVariable("USERPROFILE")},
+                {"%LOCALAPPDATA%",              Environment.GetEnvironmentVariable("LOCALAPPDATA")},
+                {"%TEMP%",                      Environment.GetEnvironmentVariable("TEMP")},
+                {"%TMP%",                       Environment.GetEnvironmentVariable("TEMP")},
+                {"%APPDATA%",                   Environment.GetEnvironmentVariable("APPDATA")},
+                {"%SystemRoot%",                Environment.GetEnvironmentVariable("SystemRoot")},
             };
             foreach (KeyValuePair<string, string> pair in handledVars)
             {
