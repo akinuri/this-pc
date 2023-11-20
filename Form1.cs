@@ -7,6 +7,7 @@ namespace this_pc
         public Form1()
         {
             InitializeComponent();
+            Summary.PopulateListView(SummaryListView);
             Locations.PopulateTreeView(LocationsTreeView);
             LocationsTreeView.ExpandAll();
         }

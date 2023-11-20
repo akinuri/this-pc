@@ -28,16 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Device", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Manufacturer",
-            "LENOVO"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Model",
-            "80SR"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "SKU",
-            "LENOVO_MT_80SR_BU_idea_FM_Lenovo ideapad 510-15ISK"}, -1);
             this.LocationsTreeView = new System.Windows.Forms.TreeView();
             this.LocationsLabel = new System.Windows.Forms.Label();
             this.SummaryListView = new System.Windows.Forms.ListView();
@@ -82,18 +72,7 @@
             this.columnHeader1,
             this.columnHeader2});
             this.SummaryListView.FullRowSelect = true;
-            listViewGroup1.Header = "Device";
-            listViewGroup1.Name = "listViewGroup1";
-            this.SummaryListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
             this.SummaryListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            listViewItem1.Group = listViewGroup1;
-            listViewItem2.Group = listViewGroup1;
-            listViewItem3.Group = listViewGroup1;
-            this.SummaryListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
             this.SummaryListView.Location = new System.Drawing.Point(10, 31);
             this.SummaryListView.Margin = new System.Windows.Forms.Padding(0);
             this.SummaryListView.Name = "SummaryListView";
