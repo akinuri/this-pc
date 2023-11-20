@@ -9,8 +9,8 @@ namespace this_pc
         public Form1()
         {
             InitializeComponent();
-            PopulateTreeView(treeView1);
-            treeView1.ExpandAll();
+            PopulateTreeView(LocationsTreeView);
+            LocationsTreeView.ExpandAll();
         }
         class LocationNodeRecord
         {
@@ -155,7 +155,7 @@ namespace this_pc
 
         private void Form1_Click(object sender, EventArgs e)
         {
-            treeView1.SelectedNode = null;
+            LocationsTreeView.SelectedNode = null;
         }
 
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -171,7 +171,7 @@ namespace this_pc
 
         private void Form1_Activated(object sender, EventArgs e)
         {
-            treeView1.SelectedNode = null;
+            LocationsTreeView.SelectedNode = null;
         }
 
         private void treeView1_BeforeCollapse(object sender, TreeViewCancelEventArgs e)

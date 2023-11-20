@@ -28,38 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.LocationsTreeView = new System.Windows.Forms.TreeView();
+            this.LocationsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // treeView1
+            // LocationsTreeView
             // 
-            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.treeView1.Location = new System.Drawing.Point(10, 10);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(240, 570);
-            this.treeView1.TabIndex = 10;
-            this.treeView1.TabStop = false;
-            this.treeView1.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeCollapse);
-            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
+            this.LocationsTreeView.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LocationsTreeView.Location = new System.Drawing.Point(9, 34);
+            this.LocationsTreeView.Margin = new System.Windows.Forms.Padding(0);
+            this.LocationsTreeView.Name = "LocationsTreeView";
+            this.LocationsTreeView.Size = new System.Drawing.Size(240, 570);
+            this.LocationsTreeView.TabIndex = 10;
+            this.LocationsTreeView.TabStop = false;
+            this.LocationsTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeCollapse);
+            this.LocationsTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
+            // 
+            // LocationsLabel
+            // 
+            this.LocationsLabel.AutoSize = true;
+            this.LocationsLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LocationsLabel.Location = new System.Drawing.Point(9, 9);
+            this.LocationsLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.LocationsLabel.Name = "LocationsLabel";
+            this.LocationsLabel.Size = new System.Drawing.Size(73, 20);
+            this.LocationsLabel.TabIndex = 11;
+            this.LocationsLabel.Text = "Locations";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 601);
-            this.Controls.Add(this.treeView1);
+            this.ClientSize = new System.Drawing.Size(269, 626);
+            this.Controls.Add(this.LocationsLabel);
+            this.Controls.Add(this.LocationsTreeView);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "This PC";
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Click += new System.EventHandler(this.Form1_Click);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private TreeView treeView1;
+        private TreeView LocationsTreeView;
+        private Label LocationsLabel;
     }
 }
