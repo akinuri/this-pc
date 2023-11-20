@@ -130,6 +130,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 569);
             this.Controls.Add(this.splitContainer1);
+            this.MaximumSize = new System.Drawing.Size(800, 608);
+            this.MinimumSize = new System.Drawing.Size(612, 608);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "This PC";
