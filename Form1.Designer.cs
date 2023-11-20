@@ -72,7 +72,7 @@
             this.columnHeader1,
             this.columnHeader2});
             this.SummaryListView.FullRowSelect = true;
-            this.SummaryListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.SummaryListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.SummaryListView.Location = new System.Drawing.Point(10, 31);
             this.SummaryListView.Margin = new System.Windows.Forms.Padding(0);
             this.SummaryListView.Name = "SummaryListView";
