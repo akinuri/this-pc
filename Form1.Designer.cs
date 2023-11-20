@@ -97,7 +97,7 @@
             this.SummaryListView.Location = new System.Drawing.Point(10, 31);
             this.SummaryListView.Margin = new System.Windows.Forms.Padding(0);
             this.SummaryListView.Name = "SummaryListView";
-            this.SummaryListView.Size = new System.Drawing.Size(430, 192);
+            this.SummaryListView.Size = new System.Drawing.Size(309, 192);
             this.SummaryListView.TabIndex = 13;
             this.SummaryListView.UseCompatibleStateImageBehavior = false;
             this.SummaryListView.View = System.Windows.Forms.View.Details;
@@ -110,7 +110,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Value";
-            this.columnHeader2.Width = 300;
+            this.columnHeader2.Width = 200;
             // 
             // SummaryLabel
             // 
@@ -129,6 +129,7 @@
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -140,15 +141,15 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.LocationsTreeView);
             this.splitContainer1.Panel2.Controls.Add(this.LocationsLabel);
-            this.splitContainer1.Size = new System.Drawing.Size(717, 563);
-            this.splitContainer1.SplitterDistance = 450;
+            this.splitContainer1.Size = new System.Drawing.Size(596, 566);
+            this.splitContainer1.SplitterDistance = 329;
             this.splitContainer1.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 566);
+            this.ClientSize = new System.Drawing.Size(596, 569);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
