@@ -20,6 +20,7 @@ public static class Locations
         locationsText = ReplaceEnvVarPlaceHolders(locationsText);
 
         string[] lines = Regex.Split(locationsText, @"\r?\n");
+        lines = lines.Where(line => !string.IsNullOrWhiteSpace(line)).ToArray();
 
         List<LocationNodeRecord> parentNodes = new List<LocationNodeRecord>();
         LocationNodeRecord? prevNode = null;
