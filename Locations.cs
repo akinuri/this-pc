@@ -5,72 +5,20 @@ public static class Locations
 
     private static string locationsFilePath = "locations.txt";
 
-    private static List<LocationNodeRecord> GetLocations()
+    private static string[] readLocationsFile(Func<string, string>? callback = null)
     {
-        List<LocationNodeRecord> locations = new List<LocationNodeRecord> { };
-
+        string[] lines = new string[0];
         if (!File.Exists(locationsFilePath))
         {
-            return locations;
+            return lines;
         }
-
-        StreamReader sr = new StreamReader("locations.txt");
-        string locationsText = sr.ReadToEnd();
-
-        locationsText = ReplaceEnvVarPlaceHolders(locationsText);
-
-        string[] lines = Regex.Split(locationsText, @"\r?\n");
-        lines = lines.Where(line => !string.IsNullOrWhiteSpace(line)).ToArray();
-
-        List<LocationNodeRecord> parentNodes = new List<LocationNodeRecord>();
-        LocationNodeRecord? prevNode = null;
-
-        foreach (var line in lines)
-        {
-            var indentMatch = Regex.Match(line, @"^ *");
-            string indent = indentMatch.Success ? indentMatch.Value : "";
-            var indentLevelMatches = Regex.Matches(indent, @" {4}");
-            int indentLevel = indentLevelMatches.Count;
-
-            string[] parts = Regex.Split(line, @", *");
-            string text = parts[0].Trim();
-            string tag = parts[1].Trim();
-
-            LocationNodeRecord locNodeRec = new LocationNodeRecord { Text = text, Tag = tag, Level = indentLevel };
-
-            if (prevNode == null)
-            {
-                locations.Add(locNodeRec);
-            }
-            else
-            {
-                if (locNodeRec.Level > prevNode.Level)
-                {
-                    parentNodes.Add(prevNode);
-                }
-                else if (locNodeRec.Level < prevNode.Level)
-                {
-                    int levelDiff = Math.Abs(locNodeRec.Level - prevNode.Level);
-                    parentNodes.RemoveRange(parentNodes.Count - levelDiff, levelDiff);
-                }
-                if (parentNodes.Count == 0)
-                {
-                    locations.Add(locNodeRec);
-                }
-                else
-                {
-                    var lastParent = parentNodes[parentNodes.Count - 1];
-                    lastParent.Children.Add(locNodeRec);
-                }
-            }
-
-            prevNode = locNodeRec;
-        }
-
-        return locations;
+        string text = File.ReadAllText(locationsFilePath);
+        text = callback?.Invoke(text) ?? text;
+        lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        return lines;
     }
-    
-    private static string ReplaceEnvVarPlaceHolders(string text)
+
+    private static string ReplaceVarPlaceHolders(string text)
     {
         IDictionary<string, string?> handledVars = new Dictionary<string, string?>
             {
@@ -96,10 +44,62 @@ public static class Locations
         return text;
     }
 
+    private static List<LocationNodeRecord> buildLocationsHierarchy(string[]? lines = null)
+    {
+        lines ??= new string[0];
+        List<LocationNodeRecord> locations = new List<LocationNodeRecord> { };
+        List<LocationNodeRecord> parentNodes = new List<LocationNodeRecord>();
+        LocationNodeRecord? prevNode = null;
+        foreach (var line in lines)
+        {
+            var indentMatch = Regex.Match(line, @"^ *");
+            string indent = indentMatch.Success ? indentMatch.Value : "";
+            var indentLevelMatches = Regex.Matches(indent, @" {4}");
+            int indentLevel = indentLevelMatches.Count;
+            string[] parts = Regex.Split(line, @", *");
+            string text = parts[0].Trim();
+            string tag = parts[1].Trim();
+            LocationNodeRecord locNodeRec = new LocationNodeRecord { Text = text, Tag = tag, Level = indentLevel };
+            if (prevNode == null)
+            {
+                locations.Add(locNodeRec);
+            }
+            else
+            {
+                if (locNodeRec.Level > prevNode.Level)
+                {
+                    parentNodes.Add(prevNode);
+                }
+                else if (locNodeRec.Level < prevNode.Level)
+                {
+                    int levelDiff = Math.Abs(locNodeRec.Level - prevNode.Level);
+                    parentNodes.RemoveRange(parentNodes.Count - levelDiff, levelDiff);
+                }
+                if (parentNodes.Count == 0)
+                {
+                    locations.Add(locNodeRec);
+                }
+                else
+                {
+                    var lastParent = parentNodes[parentNodes.Count - 1];
+                    lastParent.Children.Add(locNodeRec);
+                }
+            }
+            prevNode = locNodeRec;
+        }
+        return locations;
+    }
+
+    private static List<LocationNodeRecord> GetLocations()
+    {
+        string[] lines = readLocationsFile(text => ReplaceVarPlaceHolders(text));
+        List<LocationNodeRecord> locations = buildLocationsHierarchy(lines);
+        return locations;
+    }
+
     public static void PopulateTreeView(TreeView treeView)
     {
         List<LocationNodeRecord> locations = GetLocations();
-
         foreach (LocationNodeRecord location in locations)
         {
             TreeNode treenode = new TreeNode(location.Text) { Tag = location.Tag };
