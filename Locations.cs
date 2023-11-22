@@ -52,14 +52,14 @@ public static class Locations
         LocationNodeRecord? prevNode = null;
         foreach (var line in lines)
         {
-            var indentMatch = Regex.Match(line, @"^ *");
-            string indent = indentMatch.Success ? indentMatch.Value : "";
-            var indentLevelMatches = Regex.Matches(indent, @" {4}");
-            int indentLevel = indentLevelMatches.Count;
+            int indentLevel = Utilities.GetIndentLevel(line);
             string[] parts = Regex.Split(line, @", *");
-            string text = parts[0].Trim();
-            string tag = parts[1].Trim();
-            LocationNodeRecord locNodeRec = new LocationNodeRecord { Text = text, Tag = tag, Level = indentLevel };
+            LocationNodeRecord locNodeRec = new LocationNodeRecord
+            {
+                Text = parts[0].Trim(),
+                Tag = parts[1].Trim(),
+                Level = Utilities.GetIndentLevel(line)
+            };
             if (prevNode == null)
             {
                 locations.Add(locNodeRec);

@@ -3,7 +3,8 @@ using System.Text.RegularExpressions;
 
 public static class Utilities
 {
-    static string RemoveUnnecessaryIndentation(string indentedString)
+
+    public static string RemoveUnnecessaryIndentation(string indentedString)
     {
         var match = Regex.Match(indentedString, @"^[ ]+", RegexOptions.Multiline);
         int commonIndentationLength = match.Success ? match.Value.Length : 0;
@@ -24,4 +25,14 @@ public static class Utilities
         }
         return string.Join(Environment.NewLine, processedLines);
     }
+
+    public static int GetIndentLevel(string line, string indentString = "    ")
+    {
+        var indentMatch = Regex.Match(line, @"^ *");
+        string indent = indentMatch.Success ? indentMatch.Value : "";
+        var indentLevelMatches = Regex.Matches(indent, indentString);
+        int level = indentLevelMatches.Count;
+        return level;
+    }
+
 }
