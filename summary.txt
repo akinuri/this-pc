@@ -1,7 +1,13 @@
-Device
-    Manufacturer,	%Manufacturer%
+Name,               %Name%
+User,               %User%
+Group 1
+    Manufacturer,   %Manufacturer%
     Model,          %Model%
     SKU,            %SKU%
-Name,				%Name%
-User,				%User%
+Group 2
+    Time Zone,          %TimeZone%
+    Logical Processors, %LogicalProcessors%
+    System Type,        %SystemType%
+    Memory,             %Memory%
+    Workgroup,          %Workgroup%
 

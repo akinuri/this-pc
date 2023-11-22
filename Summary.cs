@@ -23,11 +23,16 @@ public static class Summary
     {
         Dictionary<string, string> varPropMap = new Dictionary<string, string>
         {
-            {"%Manufacturer%",  "Manufacturer"},
-            {"%Model%",         "Model"},
-            {"%SKU%",           "SystemSKUNumber"},
-            {"%Name%",          "Name"},
-            {"%User%",          "PrimaryOwnerName"},
+            {"%Manufacturer%",      "Manufacturer"},
+            {"%Model%",             "Model"},
+            {"%SKU%",               "SystemSKUNumber"},
+            {"%Name%",              "Name"},
+            {"%User%",              "PrimaryOwnerName"},
+            {"%TimeZone%",          "CurrentTimeZone"},
+            {"%LogicalProcessors%", "NumberOfLogicalProcessors"},
+            {"%SystemType%",        "SystemType"},
+            {"%Memory%",            "TotalPhysicalMemory"},
+            {"%Workgroup%",         "Workgroup"},
         };
         List<string> usedProps = new List<string>();
         foreach (var item in varPropMap)
