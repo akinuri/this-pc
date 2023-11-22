@@ -134,7 +134,7 @@ public static class Summary
         List<SummaryNode> summary = GetSummary();
         foreach (SummaryNode node in summary)
         {
-            if (node.Level == 0)
+            if (node.Level == 0 && node.Children.Count > 0)
             {
                 ListViewGroup group = new ListViewGroup(node.Name, HorizontalAlignment.Left);
                 listView.Groups.AddRange(new ListViewGroup[] { group });
@@ -144,6 +144,11 @@ public static class Summary
                     item.Group = group;
                     listView.Items.Add(item);
                 }
+            }
+            else if (node.Children.Count == 0)
+            {
+                ListViewItem item = new ListViewItem(new string[] { node.Name, node.Value ?? "" });
+                listView.Items.Add(item);
             }
         }
     }

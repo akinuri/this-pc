@@ -1,7 +1,7 @@
 Device
-    Manufacturer,   %Manufacturer%
+    Manufacturer,	%Manufacturer%
     Model,          %Model%
     SKU,            %SKU%
-    Name,           %Name%
-    User,           %User%
+Name,				%Name%
+User,				%User%
 
