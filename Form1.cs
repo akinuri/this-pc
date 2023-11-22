@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Timer = System.Windows.Forms.Timer;
 
 namespace this_pc
 {
@@ -36,6 +37,34 @@ namespace this_pc
         private void treeView1_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void SummaryListView_Resize(object sender, EventArgs e)
+        {
+            ResizeSecondColumn();
+            bool hrScrollActive = SummaryListView.ClientRectangle.Width < (SummaryListView.Columns[0].Width + SummaryListView.Columns[1].Width);
+            bool vrScrollActive = SummaryListView.ClientRectangle.Height > SummaryListView.Height;
+            if (hrScrollActive || vrScrollActive)
+            {
+                SummaryListView.Scrollable = false;
+                Timer timer = new Timer();
+                timer.Interval = 100;
+                timer.Tick += (s, args) =>
+                {
+                    SummaryListView.Scrollable = true;
+                    timer.Stop();
+                };
+                timer.Start();
+            }
+        }
+
+        private void ResizeSecondColumn()
+        {
+            const int firstColumnDefaultWidth = 100;
+            const int secondColumnDefaultWidth = 200;
+            int availableWidth = SummaryListView.Width - 4 - firstColumnDefaultWidth;
+            int secondColumnWidth = Math.Max(availableWidth, secondColumnDefaultWidth);
+            SummaryListView.Columns[1].Width = secondColumnWidth;
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace this_pc
+﻿namespace this_pc
 {
     partial class Form1
     {
@@ -80,6 +80,7 @@ namespace this_pc
             this.SummaryListView.TabIndex = 13;
             this.SummaryListView.UseCompatibleStateImageBehavior = false;
             this.SummaryListView.View = System.Windows.Forms.View.Details;
+            this.SummaryListView.Resize += new System.EventHandler(this.SummaryListView_Resize);
             // 
             // columnHeader1
             // 
