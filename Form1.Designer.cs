@@ -76,7 +76,7 @@
             this.SummaryListView.Location = new System.Drawing.Point(9, 31);
             this.SummaryListView.Margin = new System.Windows.Forms.Padding(0);
             this.SummaryListView.Name = "SummaryListView";
-            this.SummaryListView.Size = new System.Drawing.Size(304, 300);
+            this.SummaryListView.Size = new System.Drawing.Size(304, 400);
             this.SummaryListView.TabIndex = 13;
             this.SummaryListView.UseCompatibleStateImageBehavior = false;
             this.SummaryListView.View = System.Windows.Forms.View.Details;

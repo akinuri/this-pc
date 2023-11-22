@@ -1,6 +1,7 @@
 Name,               %Name%
 User,               %User%
 Group 1
+    Type,           %PCType%
     Manufacturer,   %Manufacturer%
     Model,          %Model%
     SKU,            %SKU%

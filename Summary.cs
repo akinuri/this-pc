@@ -33,6 +33,21 @@ public static class Summary
             {"%SystemType%",        "SystemType"},
             {"%Memory%",            "TotalPhysicalMemory"},
             {"%Workgroup%",         "Workgroup"},
+            {"%PCType%",            "PCSystemType"},
+        };
+        //https://learn.microsoft.com/en-us/dotnet/api/microsoft.powershell.commands.pcsystemtype?view=powershellsdk-1.1.0
+        Dictionary<string, string> typeMap = new Dictionary<string, string>
+        {
+            {"0", "Unspecified"},
+            {"1", "Desktop"},
+            {"2", "Mobile"},
+            {"3", "Workstation"},
+            {"4", "EnterpriseServer"},
+            {"5", "SOHOServer"},
+            {"6", "AppliancePC"},
+            {"7", "PerformanceServer"},
+            {"8", "Slate"},
+            {"9", "Maximum"},
         };
         List<string> usedProps = new List<string>();
         foreach (var item in varPropMap)
@@ -46,7 +61,12 @@ public static class Summary
         foreach (KeyValuePair<string, string> pair in info)
         {
             string var = varPropMap.FirstOrDefault(x => x.Value == pair.Key).Key;
-            text = text.Replace(var, pair.Value);
+            string value = pair.Value;
+            if (var == "%PCType%")
+            {
+                value = $"{value} ({typeMap[value]})";
+            }
+            text = text.Replace(var, value);
         }
         return text;
     }
