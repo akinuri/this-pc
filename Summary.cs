@@ -66,6 +66,12 @@ public static class Summary
             {
                 value = $"{value} ({typeMap[value]})";
             }
+            else if (var == "%Memory%")
+            {
+                float size = long.Parse(value);
+                size = size / 1024 / 1024 / 1024;
+                value = size.ToString("0.0") + " GB";
+            }
             text = text.Replace(var, value);
         }
         return text;
