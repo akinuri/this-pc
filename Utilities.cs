@@ -35,4 +35,12 @@ public static class Utilities
         return level;
     }
 
+    public static string GetTimezoneString(int timezoneOffset)
+    {
+        int hours = Math.Abs(timezoneOffset) / 60;
+        int minutes = Math.Abs(timezoneOffset) % 60;
+        string sign = (timezoneOffset >= 0) ? "+" : "-";
+        return $"{sign}{hours:D2}:{minutes:D2}";
+    }
+
 }

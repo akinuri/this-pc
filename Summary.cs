@@ -72,6 +72,10 @@ public static class Summary
                 size = size / 1024 / 1024 / 1024;
                 value = size.ToString("0.0") + " GB";
             }
+            else if (var == "%TimeZone%")
+            {
+                value = Utilities.GetTimezoneString(int.Parse(value));
+            }
             text = text.Replace(var, value);
         }
         return text;
