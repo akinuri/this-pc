@@ -134,7 +134,7 @@
             this.ClientSize = new System.Drawing.Size(478, 565);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(750, 604);
+            this.MaximumSize = new System.Drawing.Size(800, 604);
             this.MinimumSize = new System.Drawing.Size(494, 604);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

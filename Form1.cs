@@ -41,17 +41,30 @@ namespace this_pc
 
         private void SummaryListView_Resize(object sender, EventArgs e)
         {
-            ResizeSecondColumn();
+            ResizeSummaryColumns();
         }
 
-        private void ResizeSecondColumn()
+        private void ResizeSummaryColumns()
         {
-            int vrScrollWidth = SummaryListView.Width - SummaryListView.ClientRectangle.Width;
-            int firstColumnDefaultWidth = 90;
-            int secondColumnDefaultWidth = 110 - vrScrollWidth;
-            int availableWidth = SummaryListView.Width - 4 - vrScrollWidth - firstColumnDefaultWidth;
-            int secondColumnWidth = Math.Max(availableWidth, secondColumnDefaultWidth);
-            SummaryListView.Columns[1].Width = secondColumnWidth;
+            int summaryWidth = 200;
+            int vrScrollBarWidth = SummaryListView.Width - SummaryListView.ClientRectangle.Width;
+            int firstColDefWidth = 90;
+
+            float firstColWidthRatio = (float)firstColDefWidth / summaryWidth;
+
+            int unknownWidthOffset = 4; // borders?
+            int availableWidth = SummaryListView.Width - unknownWidthOffset - vrScrollBarWidth;
+
+            float summaryWidthRatio = (float)summaryWidth / SummaryListView.Width;
+
+            float firstColNewWidth = firstColWidthRatio * availableWidth;
+            float firstColWidthDiff = firstColNewWidth - firstColDefWidth;
+            float firstColWidthDiffReduced = firstColWidthDiff * summaryWidthRatio;
+            firstColNewWidth = firstColDefWidth + firstColWidthDiffReduced;
+            int secondColNewWidth = availableWidth - (int)firstColNewWidth;
+
+            SummaryListView.Columns[0].Width = (int)firstColNewWidth;
+            SummaryListView.Columns[1].Width = secondColNewWidth;
         }
     }
 }

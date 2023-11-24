@@ -43,4 +43,10 @@ public static class Utilities
         return $"{sign}{hours:D2}:{minutes:D2}";
     }
 
+    // so they can be output quickly when debugging
+    public static string JoinNumbers(params object[] numbers)
+    {
+        return string.Join(", ", numbers);
+    }
+
 }
