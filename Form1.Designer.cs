@@ -47,7 +47,7 @@
             this.LocationsTreeView.Location = new System.Drawing.Point(9, 31);
             this.LocationsTreeView.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.LocationsTreeView.Name = "LocationsTreeView";
-            this.LocationsTreeView.Size = new System.Drawing.Size(240, 520);
+            this.LocationsTreeView.Size = new System.Drawing.Size(230, 520);
             this.LocationsTreeView.TabIndex = 10;
             this.LocationsTreeView.TabStop = false;
             this.LocationsTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeCollapse);
@@ -76,7 +76,7 @@
             this.SummaryListView.Location = new System.Drawing.Point(9, 31);
             this.SummaryListView.Margin = new System.Windows.Forms.Padding(0);
             this.SummaryListView.Name = "SummaryListView";
-            this.SummaryListView.Size = new System.Drawing.Size(304, 400);
+            this.SummaryListView.Size = new System.Drawing.Size(204, 400);
             this.SummaryListView.TabIndex = 13;
             this.SummaryListView.UseCompatibleStateImageBehavior = false;
             this.SummaryListView.View = System.Windows.Forms.View.Details;
@@ -85,12 +85,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Key";
-            this.columnHeader1.Width = 100;
+            this.columnHeader1.Width = 90;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Value";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Width = 110;
             // 
             // SummaryLabel
             // 
@@ -123,19 +123,19 @@
             this.splitContainer1.Panel2.Controls.Add(this.LocationsTreeView);
             this.splitContainer1.Panel2.Controls.Add(this.LocationsLabel);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer1.Size = new System.Drawing.Size(588, 566);
-            this.splitContainer1.SplitterDistance = 322;
+            this.splitContainer1.Size = new System.Drawing.Size(478, 566);
+            this.splitContainer1.SplitterDistance = 222;
             this.splitContainer1.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 565);
+            this.ClientSize = new System.Drawing.Size(478, 565);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 604);
-            this.MinimumSize = new System.Drawing.Size(604, 604);
+            this.MaximumSize = new System.Drawing.Size(750, 604);
+            this.MinimumSize = new System.Drawing.Size(494, 604);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "This PC";

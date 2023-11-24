@@ -47,8 +47,8 @@ namespace this_pc
         private void ResizeSecondColumn()
         {
             int vrScrollWidth = SummaryListView.Width - SummaryListView.ClientRectangle.Width;
-            int firstColumnDefaultWidth = 100;
-            int secondColumnDefaultWidth = 200 - vrScrollWidth;
+            int firstColumnDefaultWidth = 90;
+            int secondColumnDefaultWidth = 110 - vrScrollWidth;
             int availableWidth = SummaryListView.Width - 4 - vrScrollWidth - firstColumnDefaultWidth;
             int secondColumnWidth = Math.Max(availableWidth, secondColumnDefaultWidth);
             SummaryListView.Columns[1].Width = secondColumnWidth;
