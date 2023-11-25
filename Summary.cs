@@ -19,7 +19,7 @@ public static class Summary
         return lines;
     }
 
-    private static string ReplaceVarPlaceHolders(string text)
+    private static string ReplaceSystemVarPlaceHolders(string text)
     {
         Dictionary<string, string> varPropMap = new Dictionary<string, string>
         {
@@ -159,7 +159,11 @@ public static class Summary
 
     public static List<SummaryNode> GetSummary()
     {
-        string[] lines = readSummaryFile(text => ReplaceVarPlaceHolders(text));
+        string[] lines = readSummaryFile(text =>
+        {
+            text = ReplaceSystemVarPlaceHolders(text);
+            return text;
+        });
         var summary = buildSummaryList(lines);
         return summary;
     }
