@@ -52,6 +52,7 @@
             LocationsTreeView.TabStop = false;
             LocationsTreeView.BeforeCollapse += treeView1_BeforeCollapse;
             LocationsTreeView.NodeMouseDoubleClick += treeView1_NodeMouseDoubleClick;
+            LocationsTreeView.MouseDown += LocationsTreeView_MouseDown;
             // 
             // LocationsLabel
             // 

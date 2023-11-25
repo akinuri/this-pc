@@ -18,12 +18,12 @@ namespace this_pc
             {
                 if (e.Node.Bounds.Contains(e.Location))
                 {
-                if (e.Node.Tag != null && e.Node.Tag is string path)
-                {
-                    Process.Start("explorer.exe", path);
+                    if (e.Node.Tag != null && e.Node.Tag is string path)
+                    {
+                        Process.Start("explorer.exe", path);
+                    }
                 }
             }
-        }
         }
 
         private void treeView1_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
@@ -58,5 +58,17 @@ namespace this_pc
             SummaryListView.Columns[0].Width = (int)firstColNewWidth;
             SummaryListView.Columns[1].Width = secondColNewWidth;
         }
+
+        private void LocationsTreeView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (!Utilities.WasAnyNodeClicked(LocationsTreeView.Nodes, e))
+                {
+                    LocationsTreeView.SelectedNode = null;
+                }
+            }
+        }
+
     }
 }

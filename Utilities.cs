@@ -49,4 +49,22 @@ public static class Utilities
         return string.Join(", ", numbers);
     }
 
+    public static bool WasAnyNodeClicked(TreeNodeCollection nodes, MouseEventArgs e)
+    {
+        foreach (TreeNode node in nodes)
+        {
+            if (node.Bounds.Contains(e.Location))
+            {
+                return true;
+            }
+
+            if (node.Nodes.Count > 0 && WasAnyNodeClicked(node.Nodes, e))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
