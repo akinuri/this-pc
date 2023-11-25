@@ -136,8 +136,6 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "This PC";
-            Activated += Form1_Activated;
-            Click += Form1_Click;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
