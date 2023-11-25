@@ -1,6 +1,6 @@
 # This PC
 
-I do a lot of modifications in Windows, so I frequently visit this and that folder. Doing these visits manually is tedious. That's why I thought about creating a small tool that maps these commonly visited locations.
+I do a lot of modifications on Windows, so I frequently visit this and that folder. Doing these visits manually is tedious. One has to remember the locations, toggle hidden items, etc. I rather not deal with this all the time. That's why I created a small tool that maps these commonly visited locations.
 
 I'll also be adding some other stuff to this tool.
 
@@ -8,13 +8,17 @@ I'll also be adding some other stuff to this tool.
 
 ## Locations
 
-Locations can be edited using the `locations.txt` file.
+Some significant locations on Windows.
 
-Double clicking on an item in the list opens the location in the Explorer.
+List items can be edited using the `locations.txt` file.
+
+Double clicking on an item opens the location in the Explorer.
 
 ## Summary
 
 An overview info of the device/system.
 
-Items can be edited using the `summary.txt` file.
+List items can be edited using the `summary.txt` file.
+
+Grouping is optional and arbitrary.
 
