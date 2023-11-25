@@ -1,4 +1,4 @@
-Name,               %Name%
+Name,               %ComputerName%
 User,               %User%
 Group 1
     Type,           %PCType%
@@ -7,8 +7,15 @@ Group 1
     SKU,            %SKU%
 Group 2
     Time Zone,          %TimeZone%
-    Logical Processors, %LogicalProcessors%
     System Type,        %SystemType%
     Memory,             %Memory%
     Workgroup,          %Workgroup%
+CPU
+    Name,               %CPUName%
+    Description,        %CPUDesc%
+    Max Speed,          %MaxSpeed%
+    Cores,              %Cores%
+    Logical Processors, %LogicalProcessors%
+    Threads,            %Threads%
+    Socket,             %Socket%
 
