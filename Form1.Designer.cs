@@ -73,7 +73,7 @@
             SummaryListView.Location = new Point(9, 31);
             SummaryListView.Margin = new Padding(0);
             SummaryListView.Name = "SummaryListView";
-            SummaryListView.Size = new Size(204, 400);
+            SummaryListView.Size = new Size(230, 460);
             SummaryListView.TabIndex = 13;
             SummaryListView.UseCompatibleStateImageBehavior = false;
             SummaryListView.View = View.Details;
@@ -82,12 +82,12 @@
             // columnHeader1
             // 
             columnHeader1.Text = "Key";
-            columnHeader1.Width = 90;
+            columnHeader1.Width = 105;
             // 
             // columnHeader2
             // 
             columnHeader2.Text = "Value";
-            columnHeader2.Width = 110;
+            columnHeader2.Width = 120;
             // 
             // SummaryLabel
             // 
@@ -120,19 +120,19 @@
             splitContainer1.Panel2.Controls.Add(LocationsTreeView);
             splitContainer1.Panel2.Controls.Add(LocationsLabel);
             splitContainer1.Panel2.Padding = new Padding(10);
-            splitContainer1.Size = new Size(478, 566);
-            splitContainer1.SplitterDistance = 222;
+            splitContainer1.Size = new Size(508, 566);
+            splitContainer1.SplitterDistance = 252;
             splitContainer1.TabIndex = 14;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(478, 565);
+            ClientSize = new Size(508, 565);
             Controls.Add(splitContainer1);
             MaximizeBox = false;
             MaximumSize = new Size(800, 604);
-            MinimumSize = new Size(494, 604);
+            MinimumSize = new Size(524, 604);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "This PC";
