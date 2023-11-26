@@ -74,7 +74,7 @@
             SummaryListView.Location = new Point(9, 31);
             SummaryListView.Margin = new Padding(0);
             SummaryListView.Name = "SummaryListView";
-            SummaryListView.Size = new Size(250, 460);
+            SummaryListView.Size = new Size(250, 520);
             SummaryListView.TabIndex = 13;
             SummaryListView.UseCompatibleStateImageBehavior = false;
             SummaryListView.View = View.Details;

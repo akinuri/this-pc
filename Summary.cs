@@ -117,6 +117,33 @@ public static class Summary
         return text;
     }
 
+    private static string ReplaceOSVarPlaceHolders(string text)
+    {
+        Dictionary<string, string> varPropMap = new Dictionary<string, string>
+        {
+            {"%Caption%",        "Caption"},
+            {"%BuildNumber%",    "BuildNumber"},
+            {"%OSArchitecture%", "OSArchitecture"},
+            {"%InstallDate%",    "InstallDate"},
+        };
+        List<string> usedProps = new List<string>();
+        foreach (var item in varPropMap)
+        {
+            if (text.Contains(item.Key))
+            {
+                usedProps.Add(item.Value);
+            }
+        }
+        Dictionary<string, string> info = GetOSInfo(usedProps.ToArray());
+        foreach (KeyValuePair<string, string> pair in info)
+        {
+            string var = varPropMap.FirstOrDefault(x => x.Value == pair.Key).Key;
+            string value = pair.Value;
+            text = text.Replace(var, value);
+        }
+        return text;
+    }
+
     public static Dictionary<string, string> GetSystemInfo(string[]? keys = null)
     {
         keys ??= new string[0];
@@ -197,6 +224,46 @@ public static class Summary
         return info;
     }
 
+    public static Dictionary<string, string> GetOSInfo(string[]? keys = null)
+    {
+        keys ??= new string[0];
+        Dictionary<string, string> info = new Dictionary<string, string>();
+        try
+        {
+            CimSession cimSession = CimSession.Create(null);
+            var query = "SELECT * FROM Win32_OperatingSystem";
+            var queryOptions = new CimOperationOptions { Timeout = TimeSpan.FromSeconds(2) };
+            var results = cimSession.QueryInstances("root/cimv2", "WQL", query, queryOptions);
+            CimInstance? result = null;
+            if (results.Any())
+            {
+                result = results.First();
+            }
+            if (result != null)
+            {
+                foreach (var item in result.CimInstanceProperties)
+                {
+                    string value = item.Value?.ToString() ?? "";
+                    var stringArray = item.Value as string[];
+                    if (stringArray != null)
+                    {
+                        value = string.Join(", ", stringArray);
+                    }
+                    if (keys.Count() == 0 || keys.Contains(item.Name))
+                    {
+                        info.Add(item.Name, value);
+                    }
+                }
+            }
+            cimSession.Dispose();
+        }
+        catch (Exception ex)
+        {
+            //Logger.error(ex.Message);
+        }
+        return info;
+    }
+
     private static List<SummaryNode> buildSummaryList(string[]? lines = null)
     {
         lines ??= new string[0];
@@ -239,6 +306,7 @@ public static class Summary
         {
             text = ReplaceSystemVarPlaceHolders(text);
             text = ReplaceProcessorVarPlaceHolders(text);
+            text = ReplaceOSVarPlaceHolders(text);
             return text;
         });
         var summary = buildSummaryList(lines);

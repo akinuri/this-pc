@@ -15,6 +15,11 @@ CPU
     Threads,            %Threads%
     Socket,             %Socket%
     Architecture,       %Architecture%
+OS
+    Edition,            %Caption%
+    Build,              %BuildNumber%
+    Architecture,       %OSArchitecture%
+    Installed on,       %InstallDate%
 Misc
     Memory,             %Memory%
     Time Zone,          %TimeZone%
