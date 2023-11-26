@@ -92,6 +92,7 @@ public static class Summary
             {"%LogicalProcessors%", "NumberOfLogicalProcessors"},
             {"%Threads%",           "ThreadCount"},
             {"%Socket%",            "SocketDesignation"},
+            {"%Architecture%",      "AddressWidth"},
         };
         List<string> usedProps = new List<string>();
         foreach (var item in varPropMap)

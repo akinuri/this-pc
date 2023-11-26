@@ -38,9 +38,9 @@ namespace this_pc
 
         private void ResizeSummaryColumns()
         {
-            int summaryWidth = 230;
+            int summaryWidth = 250;
             int vrScrollBarWidth = SummaryListView.Width - SummaryListView.ClientRectangle.Width;
-            int firstColDefWidth = 105;
+            int firstColDefWidth = 110;
 
             float firstColWidthRatio = (float)firstColDefWidth / summaryWidth;
 
@@ -51,7 +51,7 @@ namespace this_pc
 
             float firstColNewWidth = firstColWidthRatio * availableWidth;
             float firstColWidthDiff = firstColNewWidth - firstColDefWidth;
-            float firstColWidthDiffReduced = firstColWidthDiff * summaryWidthRatio;
+            float firstColWidthDiffReduced = firstColWidthDiff * summaryWidthRatio * 0.5f;
             firstColNewWidth = firstColDefWidth + firstColWidthDiffReduced;
             int secondColNewWidth = availableWidth - (int)firstColNewWidth;
 
