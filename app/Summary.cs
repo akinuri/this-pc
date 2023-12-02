@@ -1,6 +1,4 @@
-﻿using Microsoft.Management.Infrastructure;
-using Microsoft.Management.Infrastructure.Options;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 public static class Summary
 {
@@ -43,7 +41,7 @@ public static class Summary
                 usedProps.Add(item.Value);
             }
         }
-        Dictionary<string, string> info = GetSystemInfo(usedProps.ToArray());
+        Dictionary<string, string> info = Utilities.QueryWin32("ComputerSystem", usedProps.ToArray());
         foreach (KeyValuePair<string, string> pair in info)
         {
             string var = varPropMap.FirstOrDefault(x => x.Value == pair.Key).Key;
@@ -88,7 +86,7 @@ public static class Summary
                 usedProps.Add(item.Value);
             }
         }
-        Dictionary<string, string> info = GetProcessorInfo(usedProps.ToArray());
+        Dictionary<string, string> info = Utilities.QueryWin32("Processor", usedProps.ToArray());
         foreach (KeyValuePair<string, string> pair in info)
         {
             string var = varPropMap.FirstOrDefault(x => x.Value == pair.Key).Key;
@@ -120,7 +118,7 @@ public static class Summary
                 usedProps.Add(item.Value);
             }
         }
-        Dictionary<string, string> info = GetOSInfo(usedProps.ToArray());
+        Dictionary<string, string> info = Utilities.QueryWin32("OperatingSystem", usedProps.ToArray());
         foreach (KeyValuePair<string, string> pair in info)
         {
             string var = varPropMap.FirstOrDefault(x => x.Value == pair.Key).Key;
@@ -128,126 +126,6 @@ public static class Summary
             text = text.Replace(var, value);
         }
         return text;
-    }
-
-    public static Dictionary<string, string> GetSystemInfo(string[]? keys = null)
-    {
-        keys ??= new string[0];
-        Dictionary<string, string> info = new Dictionary<string, string>();
-        try
-        {
-            CimSession cimSession = CimSession.Create(null);
-            var query = "SELECT * FROM Win32_ComputerSystem";
-            var queryOptions = new CimOperationOptions { Timeout = TimeSpan.FromSeconds(2) };
-            var results = cimSession.QueryInstances("root/cimv2", "WQL", query, queryOptions);
-            CimInstance? result = null;
-            if (results.Any())
-            {
-                result = results.First();
-            }
-            if (result != null)
-            {
-                foreach (var item in result.CimInstanceProperties)
-                {
-                    string value = item.Value?.ToString() ?? "";
-                    var stringArray = item.Value as string[];
-                    if (stringArray != null)
-                    {
-                        value = string.Join(", ", stringArray);
-                    }
-                    if (keys.Count() == 0 || keys.Contains(item.Name))
-                    {
-                        info.Add(item.Name, value);
-                    }
-                }
-            }
-            cimSession.Dispose();
-        }
-        catch (Exception ex)
-        {
-            //Logger.error(ex.Message);
-        }
-        return info;
-    }
-
-    public static Dictionary<string, string> GetProcessorInfo(string[]? keys = null)
-    {
-        keys ??= new string[0];
-        Dictionary<string, string> info = new Dictionary<string, string>();
-        try
-        {
-            CimSession cimSession = CimSession.Create(null);
-            var query = "SELECT * FROM Win32_Processor";
-            var queryOptions = new CimOperationOptions { Timeout = TimeSpan.FromSeconds(2) };
-            var results = cimSession.QueryInstances("root/cimv2", "WQL", query, queryOptions);
-            CimInstance? result = null;
-            if (results.Any())
-            {
-                result = results.First();
-            }
-            if (result != null)
-            {
-                foreach (var item in result.CimInstanceProperties)
-                {
-                    string value = item.Value?.ToString() ?? "";
-                    var stringArray = item.Value as string[];
-                    if (stringArray != null)
-                    {
-                        value = string.Join(", ", stringArray);
-                    }
-                    if (keys.Count() == 0 || keys.Contains(item.Name))
-                    {
-                        info.Add(item.Name, value);
-                    }
-                }
-            }
-            cimSession.Dispose();
-        }
-        catch (Exception ex)
-        {
-            //Logger.error(ex.Message);
-        }
-        return info;
-    }
-
-    public static Dictionary<string, string> GetOSInfo(string[]? keys = null)
-    {
-        keys ??= new string[0];
-        Dictionary<string, string> info = new Dictionary<string, string>();
-        try
-        {
-            CimSession cimSession = CimSession.Create(null);
-            var query = "SELECT * FROM Win32_OperatingSystem";
-            var queryOptions = new CimOperationOptions { Timeout = TimeSpan.FromSeconds(2) };
-            var results = cimSession.QueryInstances("root/cimv2", "WQL", query, queryOptions);
-            CimInstance? result = null;
-            if (results.Any())
-            {
-                result = results.First();
-            }
-            if (result != null)
-            {
-                foreach (var item in result.CimInstanceProperties)
-                {
-                    string value = item.Value?.ToString() ?? "";
-                    var stringArray = item.Value as string[];
-                    if (stringArray != null)
-                    {
-                        value = string.Join(", ", stringArray);
-                    }
-                    if (keys.Count() == 0 || keys.Contains(item.Name))
-                    {
-                        info.Add(item.Name, value);
-                    }
-                }
-            }
-            cimSession.Dispose();
-        }
-        catch (Exception ex)
-        {
-            //Logger.error(ex.Message);
-        }
-        return info;
     }
 
     private static List<SummaryNode> buildSummaryList(string[]? lines = null)

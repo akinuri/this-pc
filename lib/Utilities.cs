@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.Management.Infrastructure.Options;
+using Microsoft.Management.Infrastructure;
 using System.Text.RegularExpressions;
 
 public static class Utilities
@@ -15,6 +17,46 @@ public static class Utilities
         text = callback?.Invoke(text) ?? text;
         lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         return lines;
+    }
+
+    public static Dictionary<string, string> QueryWin32(string target, string[]? keys = null)
+    {
+        keys ??= new string[0];
+        Dictionary<string, string> info = new Dictionary<string, string>();
+        try
+        {
+            CimSession cimSession = CimSession.Create(null);
+            var query = $"SELECT * FROM Win32_{target}";
+            var queryOptions = new CimOperationOptions { Timeout = TimeSpan.FromSeconds(2) };
+            var results = cimSession.QueryInstances("root/cimv2", "WQL", query, queryOptions);
+            CimInstance? result = null;
+            if (results.Any())
+            {
+                result = results.First();
+            }
+            if (result != null)
+            {
+                foreach (var item in result.CimInstanceProperties)
+                {
+                    string value = item.Value?.ToString() ?? "";
+                    var stringArray = item.Value as string[];
+                    if (stringArray != null)
+                    {
+                        value = string.Join(", ", stringArray);
+                    }
+                    if (keys.Count() == 0 || keys.Contains(item.Name))
+                    {
+                        info.Add(item.Name, value);
+                    }
+                }
+            }
+            cimSession.Dispose();
+        }
+        catch (Exception ex)
+        {
+            //Logger.error(ex.Message);
+        }
+        return info;
     }
 
     public static string RemoveUnnecessaryIndentation(string indentedString)
