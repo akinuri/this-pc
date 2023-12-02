@@ -4,6 +4,19 @@ using System.Text.RegularExpressions;
 public static class Utilities
 {
 
+    public static string[] ReadFileLines(string filepath, Func<string, string>? callback = null)
+    {
+        string[] lines = new string[0];
+        if (!File.Exists(filepath))
+        {
+            return lines;
+        }
+        string text = File.ReadAllText(filepath);
+        text = callback?.Invoke(text) ?? text;
+        lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        return lines;
+    }
+
     public static string RemoveUnnecessaryIndentation(string indentedString)
     {
         var match = Regex.Match(indentedString, @"^[ ]+", RegexOptions.Multiline);

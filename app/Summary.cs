@@ -4,20 +4,6 @@ using System.Text.RegularExpressions;
 
 public static class Summary
 {
-    public static string summaryFilePath = "summary.txt";
-
-    private static string[] readSummaryFile(Func<string, string>? callback = null)
-    {
-        string[] lines = new string[0];
-        if (!File.Exists(summaryFilePath))
-        {
-            return lines;
-        }
-        string text = File.ReadAllText(summaryFilePath);
-        text = callback?.Invoke(text) ?? text;
-        lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-        return lines;
-    }
 
     private static string ReplaceSystemVarPlaceHolders(string text)
     {
@@ -302,13 +288,15 @@ public static class Summary
 
     public static List<SummaryNode> GetSummary()
     {
-        string[] lines = readSummaryFile(text =>
-        {
-            text = ReplaceSystemVarPlaceHolders(text);
-            text = ReplaceProcessorVarPlaceHolders(text);
-            text = ReplaceOSVarPlaceHolders(text);
-            return text;
-        });
+        string[] lines = Utilities.ReadFileLines(
+            "summary.txt",
+            text => {
+                text = ReplaceSystemVarPlaceHolders(text);
+                text = ReplaceProcessorVarPlaceHolders(text);
+                text = ReplaceOSVarPlaceHolders(text);
+                return text;
+            }
+        );
         var summary = buildSummaryList(lines);
         return summary;
     }

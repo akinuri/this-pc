@@ -3,21 +3,6 @@
 public static class Locations
 {
 
-    private static string locationsFilePath = "locations.txt";
-
-    private static string[] readLocationsFile(Func<string, string>? callback = null)
-    {
-        string[] lines = new string[0];
-        if (!File.Exists(locationsFilePath))
-        {
-            return lines;
-        }
-        string text = File.ReadAllText(locationsFilePath);
-        text = callback?.Invoke(text) ?? text;
-        lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-        return lines;
-    }
-
     private static string ReplaceVarPlaceHolders(string text)
     {
         IDictionary<string, string?> handledVars = new Dictionary<string, string?>
@@ -92,7 +77,10 @@ public static class Locations
 
     private static List<LocationNodeRecord> GetLocations()
     {
-        string[] lines = readLocationsFile(text => ReplaceVarPlaceHolders(text));
+        string[] lines = Utilities.ReadFileLines(
+            "locations.txt",
+            text => ReplaceVarPlaceHolders(text)
+        );
         List<LocationNodeRecord> locations = buildLocationsHierarchy(lines);
         return locations;
     }
